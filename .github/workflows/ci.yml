@@ -35,3 +35,23 @@ jobs:
 
     - name: Run linter
       run: npm run lint
+
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: CDNievas/heroku-action@v1.0 
+        with:
+          heroku_email: "ellaira@outlook.com"
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "test"
+
+      
